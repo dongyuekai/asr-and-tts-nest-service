@@ -4,11 +4,16 @@ import { AppService } from './app.service';
 import { AiModule } from './ai/ai.module';
 import { ConfigModule } from '@nestjs/config';
 import { SpeechModule } from './speech/speech.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
     AiModule,
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'public'),
+    }),
     SpeechModule,
   ],
   controllers: [AppController],
