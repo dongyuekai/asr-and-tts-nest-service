@@ -12,9 +12,7 @@ import { ChatOpenAI } from '@langchain/openai';
       provide: 'CHAT_MODEL',
       useFactory: (configService: ConfigService) => {
         const modelName =
-          configService.get<string>('OPENAI_MODEL') ||
-          configService.get<string>('OPENAI_MODEL') ||
-          'qwen3.5-plus';
+          configService.get<string>('OPENAI_MODEL') || 'qwen3.5-plus';
 
         return new ChatOpenAI({
           model: modelName,
