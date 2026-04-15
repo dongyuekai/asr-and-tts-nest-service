@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SpeechModule } from './speech/speech.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -15,6 +16,9 @@ import { join } from 'path';
       rootPath: join(process.cwd(), 'public'),
     }),
     SpeechModule,
+    EventEmitterModule.forRoot({
+      maxListeners: 200,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
